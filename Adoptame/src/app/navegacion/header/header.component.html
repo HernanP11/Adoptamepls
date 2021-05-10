@@ -4,16 +4,22 @@
             <mat-icon>menu</mat-icon>
         </button>
     </div>
-    <div>
-        <a routerLink="/home">Owner-Account</a>
+    <div class="logo" >
+        <a  routerLink="/home">
+            <img src="assets\images\Method Draw Image (1).png" >
+        </a>
     </div>
-    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+    <div fxFlex  fxLayout fxLayoutAlign="end" fxHide.xs class="flex-wrapper">
         <ul fxLayout fxLayoutGap="15px" class="navigation-items">
             <li>
-                <a routerLink="/owner">Owner Actions</a>
+                <a mat-button routerLink="/publicacion" routerLinkActive="active">Publicaciones</a>
             </li>
             <li>
-                <a routerLink="/account">Account Actions</a>
+                <a  mat-button routerLink="/login"  routerLinkActive="active"> Iniciar sesión</a>
             </li>
+            <li>
+                <a  mat-button routerLink="/registro" routerLinkActive="active">Registro</a>
+            </li>
+
         </ul>
     </div>

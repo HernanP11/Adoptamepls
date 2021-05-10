@@ -3,9 +3,13 @@ a {
     text-decoration: none;
     color: white;
 }
- 
+a.active {
+    background-color: #fbda6f;
+    color:black; 
+    text-decoration-color: black;
+}
 a:hover, a:active{
-    color: lightgray;
+    color: white;
 }
  
 .navigation-items{
@@ -22,4 +26,16 @@ mat-toolbar{
     mat-toolbar{
         border-radius: 0px;
     }
+}
+img{
+    width: 100%;
+    height: auto;
+    margin-top: 5%;
+}
+
+.flex-wrapper{
+    margin-right: 10%;
+}
+.logo{
+    margin-left: 10%;
 }

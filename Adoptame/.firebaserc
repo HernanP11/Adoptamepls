@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "adoptame-2021-8547a": {
+      "hosting": {
+        "Adoptame": [
+          "adoptame-2021-8547a"
+        ]
+      }
+    }
+  }
+}
