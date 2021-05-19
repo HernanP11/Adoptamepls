@@ -1,1 +1,17 @@
-<p>publicacion works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title> {{ publicacion.nombreAnimal| uppercase}} </mat-card-title>
+        <mat-card-subtitle> {{publicacion.personalidad}}</mat-card-subtitle>
+    </mat-card-header>
+    <div class="crop-image"> 
+        <img [src]="publicacion.imagen" alt="">
+    </div>
+    <mat-card-content> 
+        <p> {{ publicacion.personalidad | slice:0:10}}</p>
+        <p> {{ publicacion.energia | slice:0:10}}</p>
+        <p> {{ publicacion.ciudad| slice:0:10}}</p>
+    </mat-card-content>
+    <mat-card-actions> 
+        <a mat-raised-button [routerLink] ="['/publicacion', publicacion.$idPublicacion]">Ver mascota</a>
+    </mat-card-actions>
+</mat-card>

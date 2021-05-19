@@ -1,1 +1,7 @@
-<p>publicacines-lista works!</p>
+<div class="product-grid">
+    <app-publicacion 
+    *ngFor="let publicacion of publicaciones"
+     (publicacionClicked)="clickPublicacion($event)"
+      [publicacion]="publicacion"></app-publicacion>
+  </div>
+

@@ -30,11 +30,7 @@ const routes: Routes = [
         canActivate: [AdminGuard],
         loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
       },
-      {
-      path: 'registro',
-        canActivate: [AdminGuard],
-        loadChildren: () => import('../registro/registro.module').then(m =>m.RegistroModule) 
-      },
+      
     ]
   },
  

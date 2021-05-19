@@ -1,0 +1,26 @@
+
+.example-form {
+    min-width: 80%;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  mat-raised-button{
+    width: 100%;
+    height: 100%;
+  }
+  .mat-raised-button{
+    width: 10%;
+    margin-bottom: 5px;
+    font-size: auto;
+  }
+ 
+  @media(max-width: 959px){
+    mat-toolbar{
+        border-radius: 0px;
+    }
+}

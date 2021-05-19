@@ -1,1 +1,20 @@
-<p>publicacion-detalle works!</p>
+<div *ngIf="publicacion">
+    <div>
+        <img [src]="publicacion.imagen" alt="">
+    </div>  
+    <div>
+        <ul>
+            <li>Nombre: {{ publicacion.nombreAnimal}}</li>
+            <li>Edad: {{ publicacion.edad}}</li>
+            <li>Edad: {{ publicacion.energia}}</li>
+            <li>Edad: {{ publicacion.personalidad}}</li>
+            <li>Edad: {{ publicacion.tamano}}</li>
+            <li>Edad: {{ publicacion.ciudad}}</li>
+            <li>Edad: {{ publicacion.especie}}</li>
+        </ul>
+        <p>{{ publicacion.descripcion }}</p>
+        <p>{{ publicacion.observacion }}</p>
+    </div>
+    <button (click)="crearPublicacion()">Crear</button>
+
+</div>
