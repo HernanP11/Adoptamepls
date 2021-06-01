@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 //Firebase
 import {  AngularFireDatabase, AngularFireList } from '@angular/fire/database'
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable, observable } from 'rxjs';
 //Models
 import { Publicacion } from '../models/publicacion.model'
@@ -10,35 +11,22 @@ import { Publicacion } from '../models/publicacion.model'
 })
 export class PublicacionesService {
 
-  publicacionList: AngularFireList<any>;
+  publicacionCol: AngularFirestoreCollection<any>;
   publicacionSelecionada: Publicacion=<Publicacion>{};
   publicaciones: Publicacion[]= []
+  publicaiones: Observable<Publicacion[]>;
 
-  constructor(private firebase: AngularFireDatabase) {
-    this.publicacionList= this.firebase.list('publicaciones');
+  constructor(private firebase:  AngularFirestore) {
+
+    this.publicacionCol = firebase.collection<Publicacion>('items');
+    this.publicaiones = this.publicacionCol.valueChanges();
+    console.log( this.publicaiones,'listaaa' )
+    console.log( firebase.collection<Publicacion>('items'),'shot' )
    }
-
-  getPulicaciones(){
-    return this.publicacionList = this.firebase.list('publicaciones');
-
-  }
-  llenearPub (){
-    this.publicacionList
-    .snapshotChanges().subscribe(item =>{
-      this.publicaciones = [];
-      item.forEach(element =>{
-        let x = element.payload.toJSON();
-        //x["$idPublicacion"] = element.key;
-        this.publicaciones.push(x as Publicacion);
-      });
-    });
-
-  }
-  
-
+ 
   
   insertarPublicacion( publicacion: Publicacion){
-    this.publicacionList.push({
+    this.publicacionCol.add({
       idUsuario :publicacion.idUsuario,
       nombre: publicacion.nombreAnimal,
       edad: publicacion.edad,
@@ -55,30 +43,6 @@ export class PublicacionesService {
     })
   }
 
-  actualizarPublicacion(publicacion: Publicacion)
-  {
-    this.publicacionList.update(publicacion.$idPublicacion, {
-      nombre: publicacion.nombreAnimal,
-      edad: publicacion.edad,
-      tamano: publicacion.tamano,
-      vacunas: publicacion.vacunas,
-      personalidad: publicacion.personalidad,
-      descripcion: publicacion.descripcion,
-      observacion: publicacion.observacion,
-      energia: publicacion.energia,
-      region: publicacion.region,
-      ciudad: publicacion.ciudad,
-      imagen: publicacion.imagen,
-      especie: publicacion.especie,
-    })
-    // confirmar que se creo
-    ;
-  }
-
-  borrarProducto($idPublicacion: string){
-    this.publicacionList.remove($idPublicacion);
-  }
-
   seleccionarPublicacion( $idPublicacion: string){
     this.publicaciones.forEach(element => {
       if((element.$idPublicacion) === ( $idPublicacion)){
@@ -86,6 +50,15 @@ export class PublicacionesService {
         console.log( this.publicacionSelecionada) ;
       }
     });
+  }
+
+  crearPublicacion(){
+
+  }
+
+  ////////////
+  getPubliacaciones() {
+    return this.firebase.collection("items").valueChanges();
   }
 }
 

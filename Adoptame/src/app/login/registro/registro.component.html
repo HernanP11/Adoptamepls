@@ -1,1 +1,53 @@
-<p>registro works!</p>
+<!-- contenedor registro-->
+<div class="content">
+<div class="registro">
+    <h1 >Registro</h1>
+    <form [formGroup]="registroForm" class="example-form">
+      
+      <div>
+        <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+          <input formControlName="email" type="email" matInput [formGroup]="registroForm" 
+               placeholder="Ejemplo: correo@ejemplo.com" >
+          <mat-hint></mat-hint>
+          <mat-error *ngIf="registroForm.hasError('email') && !registroForm.hasError('required')">
+            Ingrese un correo valido
+          </mat-error>
+          <mat-error *ngIf="registroForm.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>       
+      <div>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder= "Ingrese su contraseña" [formGroup]="registroForm" [type]="hide ? 'password' : 'text'" formControlName="password"> 
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-hint *ngIf="!registroForm.value">Enter your password</mat-hint>
+        </mat-form-field>
+      </div>
+<!--         </form>
+    
+    <form [formGroup]="registroUserForm" class="example-form">          
+      <div>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder= "Nombre" [formGroup]="registroForm"type="text" formControlName="nombre"> 
+        </mat-form-field>
+      </div> 
+      <div>
+        <mat-form-field [formGroup]="registroForm" appearance="outline" >
+        <mat-label>Tipo de usuario</mat-label>
+        <mat-select [formGroup]="registroUserForm" formControlName="role" >
+          <mat-option *ngFor="let roles of role; let i = index" [value]="roles[i]">
+            {{role[i]}}
+          </mat-option>
+        </mat-select>
+        </mat-form-field>
+      </div>    
+            
+-->
+    </form>
+    <div class="center">
+      <a class="buton" mat-button [disabled]="!registroForm.valid" (click)="onRegister()" >Registrarse</a>
+    </div>
+
+</div>

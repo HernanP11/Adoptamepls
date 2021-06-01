@@ -1,0 +1,78 @@
+<div class="container">
+<form [formGroup]="form" (ngSubmit)="crearPublicacion($event)" >
+  <div class="derecho">
+          <div >
+            <mat-form-field>
+              <input placeholder="Nombre del animal" formControlName="nombreAnimal" matInput type="text">
+            </mat-form-field>
+          </div>
+        <div>
+            <mat-form-field>
+              <input placeholder="correo" formControlName="idUsuario" matInput type="text">
+            </mat-form-field>   
+        </div>
+          <div>
+            <mat-form-field>
+              <input placeholder="Edad del animal" formControlName="edad" matInput type="number">
+            </mat-form-field>
+        </div>
+          <div>
+            <mat-form-field>
+              <input placeholder="Tamaño" formControlName="tamano" matInput type="text">
+            </mat-form-field>
+        </div>
+
+
+      <div class="izquierdo">
+        <div>
+            <mat-form-field>
+              <input placeholder="Region" formControlName="region" matInput type="text">
+            </mat-form-field>
+        </div>
+          <div>
+            <mat-form-field>
+              <input placeholder="Ciudad" formControlName="ciudad" matInput type="text">
+            </mat-form-field>
+        </div>
+          <div >
+            <mat-form-field>
+              <input placeholder="Especie" formControlName="especie" matInput type="text">
+            </mat-form-field>
+        </div>
+        <div >
+
+            <mat-form-field>
+              <input placeholder="Personalidad" formControlName="personalidad" matInput type="text">
+            </mat-form-field>
+        </div>
+          <div >
+            <mat-form-field>
+              <input placeholder="Energia" formControlName="energia" matInput type="text">
+            </mat-form-field>
+        </div>
+          <div>
+            <mat-form-field>
+              <input placeholder="Vacunas" formControlName="vacunas" matInput type="text">
+            </mat-form-field>
+        </div> 
+        </div>    
+          <div >
+            <mat-form-field>
+              <textarea placeholder="Descripcion" formControlName="descripcion" matInput></textarea>
+            </mat-form-field>
+        </div>
+          <div >
+            <mat-form-field>
+              <textarea placeholder="Observacion" formControlName="observacion" matInput></textarea>
+            </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <input  placeholder="Imagen" formControlName="imagen" matInput type="text">
+          </mat-form-field>
+        </div>
+        <button (click)="crearPublicacionPrueba()">Crear</button>
+        <button  mat-raised-button type="submit">Guardar</button>  
+      </div>
+  </form>
+</div>

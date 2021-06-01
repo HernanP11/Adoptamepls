@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-
-
-
 import { AdminGuard } from '../admin.guard';
 import { CommonModule } from '@angular/common';
 
@@ -30,7 +27,11 @@ const routes: Routes = [
         canActivate: [AdminGuard],
         loadChildren: () => import('../login/login.module').then(m => m.LoginModule)
       },
-      
+      {
+        path: 'crear',
+        canActivate: [AdminGuard],
+        loadChildren: () => import('../crearPublicacion/crearPublicacion.module').then(m => m.CrearPublicacionModule)
+      },
     ]
   },
  

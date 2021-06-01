@@ -11,13 +11,20 @@ export class HeaderComponent implements OnInit {
   isLogged = false;
 
 
-  constructor( private authService :AuthenticationService) { }
+  constructor( private authService :AuthenticationService) {
+
+   }
 
   ngOnInit(): void {
-    this.authService
+    this.authService.isLogged.subscribe ((res) => (this.isLogged = res));
   }
   
   public onToggleSidenav = () => {
     this.sidenavToggle.emit();
+  }
+  onLogout(): void{
+    if(confirm("¿ Está seguro que quiere cerrar la sesión ?")){
+      this.authService.logout();
+      }
   }
 }

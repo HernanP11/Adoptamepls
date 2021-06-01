@@ -1,9 +1,24 @@
-mat-sidenav-container, mat-sidenav-content, mat-sidenav {
+.mat-sidenav-container{
+    background-image: url('../assets/images/fondoss.png');	
+    width: 100%;
     height: 100%;
+ 
 }
-mat-sidenav {
-    width: 250px;
+.mat-toolbar{
+    grid-area: tool;
+
 }
-main {
-    padding: 10px;
+
+
+.contenido{
+    
+	padding: 20px;
+	border-radius: 4px;
+    grid-area: contenido;
+
+    
 }
+.mat-sidenav-container.contenido{
+    grid-area: contenido;
+}
+

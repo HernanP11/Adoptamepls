@@ -1,11 +1,9 @@
-export type Roles = 'SUSCRIPTOR' | 'EDITOR' | 'ADMIN';
+export type Roles = 'PERSONA' | 'FUNDACION' ;
 
 export interface User {
   uid: string;
   email: string;
-  displayName?: string;
-  emailVerified: boolean;
+  nombre: string;
   password?: string;
-  photoURL?: string;
   role?: Roles;
 }

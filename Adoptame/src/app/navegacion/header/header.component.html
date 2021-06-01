@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" >
     <div fxHide.gt-xs>
         <button mat-icon-button (click)="onToggleSidenav()">
             <mat-icon>menu</mat-icon>
@@ -10,16 +10,35 @@
         </a>
     </div>
     <div fxFlex  fxLayout fxLayoutAlign="end" fxHide.xs class="flex-wrapper">
-        <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
             <li>
                 <a mat-button routerLink="/publicacion" routerLinkActive="active">Publicaciones</a>
             </li>
             <li>
-                <a  mat-button routerLink="/login"  routerLinkActive="active"> Iniciar sesión</a>
+                <a  mat-button  *ngIf= "!isLogged;else viewLogin" routerLink="/login"  routerLinkActive="active">Crear publicacion</a>
+                <ng-template #viewLogin >
+                    <a mat-button   mat-button routerLink="/crear">
+                 Crear publicacion     
+                    </a> 
+                </ng-template>
             </li>
-            <li>
-                <a  mat-button routerLink="/registro" routerLinkActive="active">Registro</a>
+            
+            <li>              
+                <a  mat-button *ngIf= "!isLogged; else viewLogout" routerLink="/login"routerLinkActive="active" >
+                        Iniciar sesion
+                </a>
+                      <ng-template #viewLogout >
+                        <button  mat-icon-button (click)="onLogout()">
+                            <mat-icon>logout</mat-icon>
+                        </button> 
+                    </ng-template>
+        
             </li>
+            
+
 
         </ul>
+       
     </div>
+
+    

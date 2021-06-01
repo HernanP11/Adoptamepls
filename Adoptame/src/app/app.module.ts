@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 //Firebase
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireDatabaseModule} from '@angular/fire/database/database.module'
+import { AngularFireDatabaseModule} from '@angular/fire/database'
 import { AuthenticationService } from './shared/services/authentication.service'
 import { PublicacionesService } from './shared/services/publicaciones.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -24,7 +24,8 @@ import { AngularFireModule } from '@angular/fire';
     AppComponent,
     LayoutComponent,
     HeaderComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    
   ],
   imports: [
     BrowserModule,

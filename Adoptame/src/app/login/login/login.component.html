@@ -1,16 +1,15 @@
-<div class="container"> 
-      <div fxFlex  fxLayout fxLayoutAlign="center" fxHide.xs class="flex-wrapper">
-        <h1 align ="center">Iniciar Sesión</h1>
-        <div align ="center">
-          <form [formGroup]="loginForm" class="example-form">
-            <div>
-              <mat-form-field appearance="outline">
-              <mat-label>Email</mat-label>
-                <input formControlName="email" type="email" matInput [formGroup]="loginForm" 
-                     placeholder="Ex. pat@example.com" >
-                <mat-hint></mat-hint>
+<div    class ="content">     
+<!-- contenedor Login-->
+    <div class="login">
+      <h1 >Iniciar Sesión</h1>
+      <form [formGroup]="loginForm" class="example-form">
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Ingrese su correo</mat-label>
+              <input formControlName="email" type="email" matInput [formGroup]="loginForm" 
+                placeholder="Ejemplo: correo@ejemplo.com" >
                 <mat-error *ngIf="loginForm.hasError('email') && !loginForm.hasError('required')">
-                  Please enter a valid email address
+                  Ingrese un correo valido
                 </mat-error>
                 <mat-error *ngIf="loginForm.hasError('required')">
                   Email is <strong>required</strong>
@@ -18,23 +17,26 @@
               </mat-form-field>
             </div> 
             <mat-form-field appearance="outline">
-              <input matInput placeholder= "Ingrese su contraseña" [formGroup]="loginForm"type="password" formControlName="password"> 
+              <input matInput placeholder= "Ingrese su contraseña" [formGroup]="loginForm" [type]="hidel ? 'password' : 'text'" formControlName="password"> 
+                <mat-icon matSuffix (click)="hidel = !hidel">{{hidel ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  <mat-hint *ngIf="!loginForm.value">Enter your password</mat-hint> 
             </mat-form-field>
           </form>
           <div class="center">
-            <button fxHide fxShow.lt-sm mat-raised-button color="primary" (click)="loginUser()" >Ingresar</button> 
-            
-            <div >
-              <p>
-                ¿Crear una cuenta ? <a [routerLink]="['/register']"> Registrarse </a>
-              </p>
-            </div>
+            <a class="buton" mat-button [disabled]="!loginForm.valid" (click)="onLogin()" >Ingresar</a>
             <div >
               <p>
                 <a [routerLink]="['/forgot-password']"> ¿Olvido su contraseña ? </a>
               </p>
             </div>
+            <div >
+              <p>
+                <a [routerLink]="['registro']"> ¿No estas registrado? </a>
+              </p>
+            </div>
           </div>
         </div>
-        </div>
-      </div>
+       
+</div>
+
+      

@@ -8,6 +8,8 @@ import { RegistroComponent } from '.././login/registro/registro.component'
 import { MaterialModule } from '../material/material.module';
 import { RecuperarContrasenaComponent } from './recuperar-contrasena/recuperar-contrasena.component';
 import { VerificarMailComponent } from './verificar-mail/verificar-mail.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 @NgModule({
     declarations: [
@@ -23,6 +25,7 @@ import { VerificarMailComponent } from './verificar-mail/verificar-mail.componen
         FormsModule, 
         ReactiveFormsModule,
         MaterialModule,
+        FlexLayoutModule,
     ]
 })
 export class LoginModule {

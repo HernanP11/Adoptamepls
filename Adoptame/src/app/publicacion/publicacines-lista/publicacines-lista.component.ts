@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { element } from 'protractor';
+import { Observable } from 'rxjs';
 import { Publicacion } from 'src/app/shared/models/publicacion.model';
 import { PublicacionesService} from '../../shared/services/publicaciones.service'
 @Component({
@@ -8,25 +8,34 @@ import { PublicacionesService} from '../../shared/services/publicaciones.service
   styleUrls: ['./publicacines-lista.component.scss']
 })
 export class PublicacinesListaComponent implements OnInit {
-  publicaciones: Publicacion[]= []
-  constructor(private publicacionesServices: PublicacionesService) { }
-
-  ngOnInit(): void {
-    this.publicacionesServices.getPulicaciones()
-    .snapshotChanges().subscribe(item =>{
-      this.publicaciones = [];
-      item.forEach(element =>{
-        let x = element.payload.toJSON();
-        //x["$idPublicacion"] = element.key;
-        this.publicaciones.push(x as Publicacion);
+  publicaciones: Publicacion[]= [];
+  publicaioneslist: Observable<Publicacion[]>;
+  
+  constructor(private publicacionesServices: PublicacionesService) {
+    this.publicaioneslist= this.publicacionesServices.publicaiones;
+    console.log(this.publicaioneslist);
+   }
+  
+  ngOnInit(){
+    console.log("poto")
+    this.publicacionesServices.getPubliacaciones().subscribe(
+      res => {
+        console.log(res)
       });
-    });
-
-   
+    console.log(this.publiacion,"lol");
   }
+
+  publiacion:any;
   clickPublicacion($idPublicacion : string){
     console.log('product');
     console.log($idPublicacion);
   }
+
+  getCoffeeOrders = () =>
+  this.publicacionesServices
+    .getPubliacaciones()
+    .subscribe(res => (this.publiacion = res)
+    );
+    
   
 }

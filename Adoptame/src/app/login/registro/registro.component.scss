@@ -1,0 +1,80 @@
+
+.example-form {
+    min-width: 80%;
+    max-width: 100%;
+    width: 100%;
+  }
+ .buton:disabled{
+  color: black;
+ }
+ .mat-form-field{
+   width: 90%;
+ }
+.buton {
+  text-decoration: none;
+  color: black;
+  width: auto;
+  height: auto;
+  font-style: italic;
+  font-size: 100%;
+  margin-bottom: 10px;
+  background-color:#fbda6f ;
+}
+
+.buton:hover{
+  color: black;
+  background-color: #fbda6f;
+}
+
+
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+ 
+  .mat-raised-button{
+    width: 10%;
+    margin-bottom: 5px;
+    font-size: auto;
+  }
+  .content{
+    width: 100%;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+	  grid-template-rows: repeat(2, auto);
+    grid-template-areas:"none login  registro" 
+                        "none login registro";
+  }
+
+
+ .content.mat-card.registro{
+   grid-area: registro;
+ }
+ .registro{
+  background-color:#c0dbf3 ;
+  border-radius: 5px;
+  grid-area: registro;
+  text-align: center;
+  padding: 5%;
+  
+ 
+ }
+ .login{
+  background-color:#c0dbf3 ;
+  grid-area: login;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5%;
+ }
+
+ 
+@media screen and (max-width: 768px){
+	.content {
+		grid-template-areas: "login login login login"
+						            "registro registro registro registro"
+
+;
+	}
+}
