@@ -5,28 +5,28 @@
       <form [formGroup]="loginForm" class="example-form">
         <div>
           <mat-form-field appearance="outline">
-            <mat-label>Ingrese su correo</mat-label>
-              <input formControlName="email" type="email" matInput [formGroup]="loginForm" 
-                placeholder="Ejemplo: correo@ejemplo.com" >
-                <mat-error *ngIf="loginForm.hasError('email') && !loginForm.hasError('required')">
-                  Ingrese un correo valido
-                </mat-error>
-                <mat-error *ngIf="loginForm.hasError('required')">
-                  Email is <strong>required</strong>
-                </mat-error>
-              </mat-form-field>
-            </div> 
+          <mat-label>Email</mat-label>
+            <input type="email" matInput [formGroup]="loginForm" formControlName="email"   required
+                 placeholder="Ejemplo: correo@ejemplo.com" >     
+            <mat-error *ngIf="this.loginForm.controls.email.hasError('email') && !this.loginForm.controls.email.hasError('required')">
+              Ingrese un correo valido
+            </mat-error> 
+            <mat-error *ngIf="this.loginForm.controls.email.hasError('required')">
+              Ingrese un <strong>Email</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>  
             <mat-form-field appearance="outline">
               <input matInput placeholder= "Ingrese su contraseña" [formGroup]="loginForm" [type]="hidel ? 'password' : 'text'" formControlName="password"> 
                 <mat-icon matSuffix (click)="hidel = !hidel">{{hidel ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  <mat-hint *ngIf="!loginForm.value">Enter your password</mat-hint> 
+                  <mat-hint *ngIf="!loginForm.value">Ingresa tu contraseña</mat-hint> 
             </mat-form-field>
           </form>
           <div class="center">
-            <a class="buton" mat-button [disabled]="!loginForm.valid" (click)="onLogin()" >Ingresar</a>
+            <button mat-button class="buton" type="submit" [disabled]="!loginForm.valid" (click)="onLogin()">Ingresar</button>  
             <div >
               <p>
-                <a [routerLink]="['/forgot-password']"> ¿Olvido su contraseña ? </a>
+                <a [routerLink]="['recuperarcontrasena']"> ¿Olvido su contraseña ? </a>
               </p>
             </div>
             <div >

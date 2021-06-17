@@ -2,52 +2,82 @@
 <div class="content">
 <div class="registro">
     <h1 >Registro</h1>
-    <form [formGroup]="registroForm" class="example-form">
-      
-      <div>
-        <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-          <input formControlName="email" type="email" matInput [formGroup]="registroForm" 
-               placeholder="Ejemplo: correo@ejemplo.com" >
-          <mat-hint></mat-hint>
-          <mat-error *ngIf="registroForm.hasError('email') && !registroForm.hasError('required')">
-            Ingrese un correo valido
-          </mat-error>
-          <mat-error *ngIf="registroForm.hasError('required')">
-            Email is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-      </div>       
-      <div>
-        <mat-form-field appearance="outline">
-          <input matInput placeholder= "Ingrese su contraseña" [formGroup]="registroForm" [type]="hide ? 'password' : 'text'" formControlName="password"> 
-          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            <mat-hint *ngIf="!registroForm.value">Enter your password</mat-hint>
-        </mat-form-field>
-      </div>
-<!--         </form>
-    
-    <form [formGroup]="registroUserForm" class="example-form">          
+    <form [formGroup]="registroForm" (ngSubmit)="onRegister()" class="example-form">
+      <!--Nombre-->      
       <div>
         <mat-form-field appearance="outline">
           <input matInput placeholder= "Nombre" [formGroup]="registroForm"type="text" formControlName="nombre"> 
+          <mat-error *ngIf="this.registroForm.controls.nombre.hasError('required')">
+            Ingrese un <strong>nombre</strong>
+          </mat-error>
         </mat-form-field>
       </div> 
+      <!-- Correo-->
+      <div>
+        <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+          <input type="email" matInput [formGroup]="registroForm" formControlName="email"   required
+               placeholder="Ejemplo: correo@ejemplo.com" >     
+          <mat-error *ngIf="this.registroForm.controls.email.hasError('email') && !this.registroForm.controls.email.hasError('required')">
+            Ingrese un correo valido
+          </mat-error> 
+          <mat-error *ngIf="this.registroForm.controls.email.hasError('required')">
+            Ingrese un <strong>Email</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>  
+      <!-- Contraseña-->     
+      <div>
+        <mat-form-field appearance="outline">
+          <input matInput placeholder= "Ingrese su contraseña" [formGroup]="registroForm" [type]="hide ? 'password' : 'text'" formControlName="password"> 
+          <mat-error *ngIf="this.registroForm.controls.password.hasError('required')">
+            Ingrese una <strong>contraseña</strong>
+          </mat-error>
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+     
+        </mat-form-field>
+      </div>  
+        <!-- Revalidadr Contraseña-->     
+        <div>
+          <mat-form-field appearance="outline">
+            <input matInput placeholder= "Repita su contraseña" [formGroup]="registroForm" [type]="hidere ? 'password' : 'text'" formControlName="repassword"> 
+            <mat-error *ngIf="this.registroForm.controls.repassword.hasError('required')">
+              Reingrese su <strong>contraseña</strong>
+            </mat-error>
+            <mat-error *ngIf="!!registroForm.errors?.misMatch">
+              No es la misma <strong>contraseña</strong>
+            </mat-error>
+            <mat-icon matSuffix (click)="hidere = !hidere">{{hidere ? 'visibility_off' : 'visibility'}}</mat-icon>  
+          </mat-form-field>
+        </div> 
+      
+      <!-- Tipo de usuario-->
       <div>
         <mat-form-field [formGroup]="registroForm" appearance="outline" >
         <mat-label>Tipo de usuario</mat-label>
-        <mat-select [formGroup]="registroUserForm" formControlName="role" >
-          <mat-option *ngFor="let roles of role; let i = index" [value]="roles[i]">
-            {{role[i]}}
-          </mat-option>
+        <mat-select [formGroup]="registroForm" formControlName="role">
+          <mat-option value="Persona">Persona</mat-option>
+          <mat-option value="Fundacion">Fundacion</mat-option>
         </mat-select>
+        <mat-error *ngIf="this.registroForm.controls.role.hasError('required')">
+          Seleccione un tipo de <strong>Usuario</strong>
+        </mat-error>
         </mat-form-field>
       </div>    
-            
--->
     </form>
-    <div class="center">
-      <a class="buton" mat-button [disabled]="!registroForm.valid" (click)="onRegister()" >Registrarse</a>
-    </div>
 
+    <div class="check">
+      <h2> Usted acepta no utilizar esta apliacion para fines maleficos y respertarr la Ley de tenecia resposbale de mascotas</h2>
+      <p>
+        <p>1) Determinar las obligaciones y derechos de los responsables de animales de compañía.</p>
+        <p>2) Proteger la salud y el bienestar animal mediante la tenencia responsable.</p>
+        <p>3) Proteger la salud pública, la seguridad de las personas, el medio ambiente y las áreas naturales protegidas, aplicando medidas para el control de la población de mascotas o animales de compañía.</p>
+        <p>4) Regular la responsabilidad por los daños a las personas y a la propiedad que sean consecuencia de la acción de mascotas o animales de compañía.</p>
+        <section class="example-section">
+          <mat-checkbox class="example-margin" [(ngModel)]="checked">Acepto los terminos</mat-checkbox>
+        </section>
+    </div>
+    <div class="center">
+      <button mat-button class="buton" type="submit" [disabled]="!(registroForm.valid && checked)" (click)="onRegister()">Registrarse</button>  
+    </div>
 </div>

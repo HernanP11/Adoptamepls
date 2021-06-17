@@ -1,0 +1,67 @@
+.content{
+    
+    width: 80%;
+    display: grid;
+    background-color: #c0dbf3 ;
+    border-radius: 5px;
+    grid-gap: 20px;
+    border:black 1px solid;
+    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, auto);
+    grid-template-areas:"imagen info" 
+                        "imagen info";
+                       
+  }
+
+h1{ color: #111;
+     font-family: 'Helvetica Neue', sans-serif;
+      font-size: auto;
+       font-weight: bold;
+        letter-spacing: 3px;
+         line-height: 1; 
+         text-align: center;
+         padding-top: 5px;
+}
+
+.imagen{
+
+    grid-area: imagen;
+}
+ 
+ .imagen img {
+
+    width: 100%;
+    height: auto;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    border-radius: 5px;
+    margin: 0 auto; 
+  }
+ .info{
+     padding-left:2% ;
+  grid-area: info;
+  border-radius: 5px;
+  text-align:left;
+  width: 100%;
+  height: auto;
+ }
+ .mat-icon {
+    vertical-align: sub;
+    padding-right: 2px;
+}
+
+ 
+@media screen and (max-width: 768px){
+	.content {
+		grid-template-areas: 
+        "info info"
+        "imagen imagen"
+						    
+;
+	}
+}
+
+
+
+

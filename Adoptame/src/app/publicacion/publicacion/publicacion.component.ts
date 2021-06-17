@@ -8,13 +8,15 @@ import { PublicacionesService } from '../../shared/services/publicaciones.servic
 })
 export class PublicacionComponent implements OnInit {
  
-  @Input() publicacion:Publicacion=<Publicacion>{} ;
-  @Output() publicacionClicked: EventEmitter<any> = new EventEmitter();
+ @Input() publicacion:Publicacion=<Publicacion>{} ;
+ @Output() publicacionClicked: EventEmitter<any> = new EventEmitter();
 
+  $publicaciones = this.publicacionesService.publicaciones;
   //publicacion: Publicacion; 
-  constructor() { }
+  constructor( private publicacionesService : PublicacionesService) { }
 
   ngOnInit(): void {
+    console.log(this. $publicaciones)
   }
 
 }

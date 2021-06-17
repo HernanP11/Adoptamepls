@@ -6,11 +6,13 @@
   }
  .buton:disabled{
   color: black;
+  background-color: gray;
  }
  .mat-form-field{
    width: 90%;
  }
 .buton {
+  margin-top: 10px;
   text-decoration: none;
   color: black;
   width: auto;
@@ -21,13 +23,6 @@
   background-color:#fbda6f ;
 }
 
-.buton:hover{
-  color: black;
-  background-color: #fbda6f;
-}
-
-
-  
   .example-full-width {
     width: 100%;
   }
@@ -44,8 +39,8 @@
     grid-gap: 20px;
     grid-template-columns: repeat(4, 1fr);
 	  grid-template-rows: repeat(2, auto);
-    grid-template-areas:"none login  registro" 
-                        "none login registro";
+    grid-template-areas:"none registro  registro" 
+                        "none registro registro";
   }
 
 

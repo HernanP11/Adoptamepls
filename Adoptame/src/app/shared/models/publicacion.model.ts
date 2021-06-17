@@ -1,16 +1,21 @@
 export interface Publicacion {
-    $idPublicacion: string;
+    $idPublicacion?: string;
     idUsuario: string;
-    nombreAnimal: string;
-    edad: number;
-    descripcion: string;
-    imagen: string;
-    observacion:string;
-    region:string;
-    ciudad : string;
-    personalidad : string;
-    energia: string;
+    nombreAnimal:string;
+    tipo:string;
+    celular:string;
+    especie:string;
+    edad:number;
+    tamano:string;
+    personalidad :string;
+    energia:string;
+    esterilizado:string;
+    parasitos:string;
     vacunas:string;
-    tamano: string;
-    especie: string;
+    region:string;
+    ciudad :string;
+    observacion:string;
+    imagen: any;
+    fileRef?: string;
+    estado:string;
 }

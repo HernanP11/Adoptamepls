@@ -1,24 +1,53 @@
-.container{
-    width: 100%;
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(2, auto);
-      grid-template-areas:"none derecho  izquerdo" 
-                            "none derecho izquerdo";
-
+.content{
+  width: 100%;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, auto);
+  grid-template-areas:"none crear  " 
+                      "none crear ";
 }
-.derecho{
-    background-color:#c0dbf3 ;
+.crear{
+  background-color:#c0dbf3 ;
   border-radius: 5px;
   grid-area: registro;
   text-align: center;
   padding: 5%;
-}
+ }
 .izquerdo{
     background-color:#c0dbf3 ;
   border-radius: 5px;
   grid-area: registro;
   text-align: center;
   padding: 5%;
+}
+.example-form{
+  min-width: 80%;
+  max-width: 100%;
+  width: 100%;
+}
+.mat-form-field{
+  width: 90%;
+}
+.buton {
+  margin-top: 10px;
+  text-decoration: none;
+  color: black;
+  width: auto;
+  height: auto;
+  font-style: italic;
+  font-size: 100%;
+  margin-bottom: 10px;
+  background-color:#fbda6f ;
+}
+.center{
+  align-items: center;
+}
+.center img {
+
+  width: 100%;
+  height: auto;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+
 }

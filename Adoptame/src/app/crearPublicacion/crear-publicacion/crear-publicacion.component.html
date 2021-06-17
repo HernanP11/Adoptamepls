@@ -1,78 +1,141 @@
-<div class="container">
-<form [formGroup]="form" (ngSubmit)="crearPublicacion($event)" >
-  <div class="derecho">
-          <div >
-            <mat-form-field>
-              <input placeholder="Nombre del animal" formControlName="nombreAnimal" matInput type="text">
-            </mat-form-field>
-          </div>
+<div  class="center" *ngIf="!login">
+  <img src="../../../assets/images/crear-pub.png" alt="">
+</div>
+<div *ngIf="login" class="container">
+  <div class="crear">
+    <H1>Ingrese los datos del animal que desea publicar</H1>
+    <h3><b> *Todos los campos son obligatorios* </b></h3>
+    <form [formGroup]="form" (ngSubmit)="crearPublicacion($event)" class="example-form">
+      <!-- Nombre-->
+      <div>
+        <mat-form-field appearance="outline">
+          <input placeholder="Nombre del animal" formControlName="nombreAnimal" matInput type="text">
+        </mat-form-field>
+      </div>
+       <!-- Tipo-->
+       <div>
+        <mat-form-field appearance="outline">
+          <mat-label>El animal es </mat-label>
+            <mat-select formControlName="tipo">
+              <mat-option *ngFor="let state of tipos" [value]="state">{{state}}</mat-option>
+            </mat-select>
+        </mat-form-field> 
+      </div>
+      <!-- Celular-->
+      <div>
+        <mat-form-field appearance="outline">
+            <input placeholder="Celular de contacto 987654321" formControlName="celular" matInput type="text">
+        </mat-form-field>   
+      </div>
+      <!-- Especie-->
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Seleccione la especie</mat-label>
+            <mat-select formControlName="especie">
+              <mat-option *ngFor="let state of especie" [value]="state">{{state}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- Edad-->
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Seleccione una edad</mat-label>
+          <mat-select formControlName="edad">
+            <mat-option *ngFor="let state of edades" [value]="state">{{state}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- Personalidad-->
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Seleccione una personalidad</mat-label>
+            <mat-select formControlName="personalidad">
+              <mat-option *ngFor="let state of personalidad" [value]="state">{{state}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- Tamaño-->
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Seleccione el tamaño</mat-label>
+            <mat-select formControlName="tamano">
+              <mat-option *ngFor="let state of tamano" [value]="state">{{state}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- Energia-->
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Seleccione la energia</mat-label>
+            <mat-select formControlName="energia">
+              <mat-option *ngFor="let state of energia" [value]="state">{{state}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+       <!-- Esterilizado-->
+       <div>
+        <mat-form-field appearance="outline">
+          <mat-label>¿Esta esterilizado?</mat-label>
+            <mat-select formControlName="esterilizado">
+              <mat-option *ngFor="let state of esterilizado" [value]="state">{{state}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- Parasito-->
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>¿Esta desparasitado?</mat-label>
+            <mat-select formControlName="parasitos">
+              <mat-option *ngFor="let state of parasitos" [value]="state">{{state}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- Vacuna-->
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>¿Esta vacunado?</mat-label>
+            <mat-select formControlName="vacunas">
+              <mat-option *ngFor="let state of vacunas" [value]="state">{{state}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- Region-->
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Seleccione su region</mat-label>
+          <mat-select formControlName="region">
+            <mat-option  *ngFor="let food of ciudades; let index" [value]="food.region">
+              {{food.region}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
+<!-- Comuna-->
         <div>
-            <mat-form-field>
-              <input placeholder="correo" formControlName="idUsuario" matInput type="text">
-            </mat-form-field>   
-        </div>
-          <div>
-            <mat-form-field>
-              <input placeholder="Edad del animal" formControlName="edad" matInput type="number">
-            </mat-form-field>
-        </div>
-          <div>
-            <mat-form-field>
-              <input placeholder="Tamaño" formControlName="tamano" matInput type="text">
-            </mat-form-field>
-        </div>
-
-
-      <div class="izquierdo">
-        <div>
-            <mat-form-field>
-              <input placeholder="Region" formControlName="region" matInput type="text">
-            </mat-form-field>
-        </div>
-          <div>
-            <mat-form-field>
-              <input placeholder="Ciudad" formControlName="ciudad" matInput type="text">
-            </mat-form-field>
-        </div>
-          <div >
-            <mat-form-field>
-              <input placeholder="Especie" formControlName="especie" matInput type="text">
-            </mat-form-field>
-        </div>
-        <div >
-
-            <mat-form-field>
-              <input placeholder="Personalidad" formControlName="personalidad" matInput type="text">
-            </mat-form-field>
-        </div>
-          <div >
-            <mat-form-field>
-              <input placeholder="Energia" formControlName="energia" matInput type="text">
-            </mat-form-field>
-        </div>
-          <div>
-            <mat-form-field>
-              <input placeholder="Vacunas" formControlName="vacunas" matInput type="text">
-            </mat-form-field>
-        </div> 
-        </div>    
-          <div >
-            <mat-form-field>
-              <textarea placeholder="Descripcion" formControlName="descripcion" matInput></textarea>
-            </mat-form-field>
-        </div>
-          <div >
-            <mat-form-field>
-              <textarea placeholder="Observacion" formControlName="observacion" matInput></textarea>
-            </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <input  placeholder="Imagen" formControlName="imagen" matInput type="text">
+          <mat-form-field appearance="outline">
+            <mat-label>Seleccione su comuna</mat-label>
+            <mat-select formControlName="ciudad">
+              <mat-option  *ngFor="let ciudad of ciudades; let index" [value]="ciudad.comunas">
+              </mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
-        <button (click)="crearPublicacionPrueba()">Crear</button>
-        <button  mat-raised-button type="submit">Guardar</button>  
-      </div>
+       
+        <!-- Observacion-->
+          <div >
+            <mat-form-field appearance="outline" >
+              <textarea placeholder="Tiene alguna observación" formControlName="observacion" matInput></textarea>
+            </mat-form-field>
+        </div>
+        <!-- Imagen-->
+        <div>
+          <label>
+            <input type="file" formControlName="imagen" (change)="handleImage($event)" />
+            <mat-icon>cloud_upload</mat-icon><span>CHOOSE IMAGE</span>
+          </label>
+        </div>
+          <!-- Imagen  <button (click)="crearPublicacionPrueba()">Crear</button>-->
+        <button mat-button class="buton" type="submit" [disabled]="!(form.valid)">Crear Publicacion</button>  
   </form>
+</div>  
 </div>

@@ -24,6 +24,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import {MatTableModule} from '@angular/material/table';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -55,7 +56,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatSidenavModule,
     CommonModule,
     MatTabsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCheckboxModule
 
   ],
   exports: [
@@ -80,6 +82,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     LayoutModule,
     MatFormFieldModule,
     MatStepperModule,
+    MatCheckboxModule
   ]
 })
 export class MaterialModule { }

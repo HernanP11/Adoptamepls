@@ -1,12 +1,8 @@
-<div class="publicacion-grid">
+<div class="product-grid">
     <app-publicacion 
     *ngFor="let publicacion of publicaciones"
      (publicacionClicked)="clickPublicacion($event)"
-      [publicacion]="publicacion">
-    </app-publicacion>
-      <div>
-        <button>aceptar</button>
-    </div>
-  </div>
- 
+      [publicacion]="publicacion"></app-publicacion>
+</div>
+
 

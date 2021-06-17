@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Publicacion } from 'src/app/shared/models/publicacion.model';
 import { PublicacionesService } from 'src/app/shared/services/publicaciones.service';
 
@@ -10,42 +11,36 @@ import { PublicacionesService } from 'src/app/shared/services/publicaciones.serv
 })
 export class PublicacionDetalleComponent implements OnInit {
 
-  publicacion: Publicacion | undefined;
-
+  //publicacion!: Observable<Publicacion>;
+  publicacion:Publicacion | undefined;
   constructor(private route: ActivatedRoute,
                private publicacionesServices: PublicacionesService
-  ) { }
+  ) { 
+    //this.publicacion= new Observable<Publicacion>;
+    
+  }
 
   ngOnInit(): void {
 
-    this.route.params.subscribe((params:Params)=>{
-      const id = params.$idPublicacion;
+    this.route.params.subscribe((params:Params)=>{    
+      const id = params.id;
+      console.log(id,"veeeeeeer")
       this.verPublicacion(id);
-
     });
   }
-  verPublicacion($idPublicacion: string){
-    this.publicacionesServices.seleccionarPublicacion
-  }
-  crearPublicacion(){
-    const newPublicacion: Publicacion = {
-      $idPublicacion: '1',
-    idUsuario: '1',
-    nombreAnimal: 'Toby',
-    edad: 1,
-    descripcion: 'muy simpatico',
-    imagen: 'assets/images/perro.jpg',
-    observacion:'Fue maltrado',
-    region:'Valparaiso',
-    ciudad : 'Limache',
-    personalidad : 'Enojon',
-    energia: 'Alta',
-    vacunas:'No',
-    tamano: 'Medio',
-    especie: 'Perro',
-    }
-    this.publicacionesServices.insertarPublicacion(newPublicacion)
+  verPublicacion(id: string){
+    console.log(id,"id");
+    console.log(this.publicacionesServices.getPublicacion(id));
+    this.publicacionesServices.getPublicacion(id)
+    .subscribe(pub => {
+      console.log(pub, "publicacion")
+      this.publicacion=pub;
+
+    })
     
+  
+   
   }
+  
 
 }

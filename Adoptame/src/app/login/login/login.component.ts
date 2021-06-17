@@ -31,14 +31,7 @@ export class LoginComponent implements OnInit {
   });
 
  
-/*
-this.registroUserForm = new FormGroup({
-  'emai-registro': new FormControl('', [Validators.required, Validators.email]),
-  'password-registro': new FormControl('', Validators.required),
-  'nombre': new FormControl('', Validators.required),
-  'role':new FormControl('', Validators.required),
-});
-*/
+
   this.firebaseErrorMessage = '';
   this.isLoggedIn=false;
 
@@ -47,24 +40,7 @@ this.registroUserForm = new FormGroup({
   ngOnInit(): void {
         
   }
-/*
-  loginUser() {
-    if (this.loginForm.invalid)
-        return;
-    this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).then((result) => {
-        if (result == null) {                               // null is success, false means there was an error
-            console.log('logging in...');
-            this.router.navigate(['/publicacion']);     
-            this.isLoggedIn= true;     
-             // when the user is logged in, navigate them to dashboard
-        }
-        else if (result.isValid == false) {
-            console.log('login error', result);
-            this.firebaseErrorMessage = result.message;
-        }
-    });
-}
-*/
+
 
 async onLogin() {
   const { email, password } = this.loginForm.value;

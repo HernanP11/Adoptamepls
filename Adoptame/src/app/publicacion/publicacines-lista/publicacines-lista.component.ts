@@ -8,34 +8,25 @@ import { PublicacionesService} from '../../shared/services/publicaciones.service
   styleUrls: ['./publicacines-lista.component.scss']
 })
 export class PublicacinesListaComponent implements OnInit {
-  publicaciones: Publicacion[]= [];
-  publicaioneslist: Observable<Publicacion[]>;
+ 
+  $publicaiones = this.publicacionesServices.publicaciones;
+  publicaciones: Publicacion [] = [];
   
-  constructor(private publicacionesServices: PublicacionesService) {
-    this.publicaioneslist= this.publicacionesServices.publicaiones;
-    console.log(this.publicaioneslist);
-   }
-  
+  constructor(private publicacionesServices: PublicacionesService) {}  
   ngOnInit(){
-    console.log("poto")
-    this.publicacionesServices.getPubliacaciones().subscribe(
-      res => {
-        console.log(res)
-      });
-    console.log(this.publiacion,"lol");
-  }
+    this.getPubliaciones();
+    console.log(this.publicaciones,"pls");
 
-  publiacion:any;
+  }
   clickPublicacion($idPublicacion : string){
-    console.log('product');
+    console.log('pruebaaaaaaaa');
     console.log($idPublicacion);
   }
-
-  getCoffeeOrders = () =>
-  this.publicacionesServices
-    .getPubliacaciones()
-    .subscribe(res => (this.publiacion = res)
-    );
-    
-  
+  getPubliaciones(){
+    this.publicacionesServices.publicaciones
+    .subscribe(publiacion =>{
+      this.publicaciones = publiacion
+      console.log(this.publicaciones,"looool")
+    })
+  }
 }
