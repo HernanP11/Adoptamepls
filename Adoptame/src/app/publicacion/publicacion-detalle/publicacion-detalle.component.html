@@ -4,7 +4,7 @@
         <img [src]="publicacion.imagen">
     </div>  
     <div class="info">
-        <h1>{{ publicacion.nombreAnimal}}</h1>
+        <h1>{{ publicacion.nombreAnimal | titlecase}}</h1>
         <ul>
             
             <p><mat-icon>date_range</mat-icon>  Edad: <b>{{ publicacion.edad}} </b> años</p>
@@ -22,6 +22,10 @@
             <p><mat-icon>description</mat-icon> Observaciones: {{ publicacion.observacion }}</p>
           <!--  <p>{{ publicacion.observacion }}</p>-->
         </ul>
+        <div *ngIf="esUsuario">
+          <button mat-raised-button (click)="adoptado()">Adoptado
+          </button>
+        </div>
 
     </div>
 

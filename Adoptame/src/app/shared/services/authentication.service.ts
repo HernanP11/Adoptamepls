@@ -10,14 +10,16 @@ import { AngularFirestore, AngularFirestoreDocument,} from '@angular/fire/firest
   providedIn: 'root'
 })
 export class AuthenticationService {
-
+  user:any;
   public user$: Observable<any>;
   uid: string;
+  correo:string;
   //public usuario:User;
    loggedIn = new BehaviorSubject <boolean>(false);
 
     constructor(private router: Router, private afAuth: AngularFireAuth, private afs: AngularFirestore) {
       this.uid='';
+      this.correo='';
       this.user$ = this.afAuth.authState.pipe(
         switchMap((user) => {
           if (user) {
@@ -47,9 +49,10 @@ export class AuthenticationService {
         window.alert('Por favor valida tu correo. Revisa tu bandeja de spam.');
        }else{
         this.loggedIn.next(true);
-        console.log (user.uid,"idddd")
         this.uid=user.uid;
-        console.log (this.uid,"disssss")
+        if(user.email){
+          this.correo=user.email;
+        }
          return user     
        }
 

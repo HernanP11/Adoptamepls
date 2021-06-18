@@ -443,15 +443,17 @@ export class CrearPublicacionComponent implements OnInit {
  
   tamano: string[] = ['No lo sé','Pequeño','Mediano','Grande'];
   especie: string[] = ['Gato','Perro','Otros'];
+  tipos: string[] = ['Callejero','De casa'];
   energia: string[] = ['No lo sé','Alta','Media','Baja'];
   personalidad: string[] = ['Alegre','Agresivo','Asustadizo','Cariñoso','Enojon','Perezoso','Tranquilo' ];
   vacunas: string[] = ['No lo sé','Si','No'];
   esterilizado: string[] = ['No lo sé','Si','No'];
   parasitos: string[] = ['No lo sé','Si','No'];
-  tipos: string[] = ['Callejero','De casa'];
+  
   edades: string[] = ['No lo sé','Entre 1 y 3 meses','Entre 4 y 6 meses','Entre 7 meses y 1 año','1 año','2 años','3 años','4 años','5 años','6 años','7 años','8 años','9 años','10 años más'];
   login:any
-
+  
+  comunas: string[] = [''];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -498,13 +500,17 @@ export class CrearPublicacionComponent implements OnInit {
     console.log(' no entro')
   }
 
-  obtenerCiudades(ciudad:string){
-    const ciudadElejida =this.form.get(ciudad)
-    this.ciudades.map( res => {
-     // if (res === ciudadElejida)
-    })
-
-
+  obtenerCiudades(region:string){
+    const ciudadElejida = region;
+    
+    for (let i=0; i <this.ciudades.length;i++){
+      if(this.ciudades[i].region == ciudadElejida){
+        console.log(region,"region afuera");
+        console.log(this.ciudades[i].region,"region for");
+        this.comunas=this.ciudades[i].comunas;
+        console.log(this.comunas,"comunas")
+      }
+    }
   }
 
   handleImage(event: any): void {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 //Firebase
 import {  AngularFireDatabase, AngularFireList } from '@angular/fire/database'
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, docChanges } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable, observable } from 'rxjs';
 import { finalize, flatMap, map } from 'rxjs/operators';
@@ -14,12 +14,13 @@ import { AuthenticationService } from './authentication.service';
   providedIn: 'root'
 })
 export class PublicacionesService {
-
+  pubDoc='';
   publicaciones: Observable<Publicacion[]>;
   publicacionCol: AngularFirestoreCollection<Publicacion>;
   uid:string;
   private filePath: any;
   private downloadURL: Observable<string> ;
+  publicacionFilter: Observable<Publicacion[]> | undefined;
 
 
   constructor(private firebase:  AngularFirestore,
@@ -55,7 +56,10 @@ export class PublicacionesService {
       ).subscribe();
   }
 
+  
+
   private savePost(publicacion: Publicacion) {
+
     const postObj = {
       nombreAnimal: publicacion.nombreAnimal,
       imagen: this.downloadURL,
@@ -73,7 +77,7 @@ export class PublicacionesService {
       region:publicacion.region,
       ciudad :publicacion.ciudad,
       observacion:publicacion.observacion,
-      idUsuario: this.uid,
+      idUsuario: this.authService.uid,
       estado:'publicado',
       $idPublicacion: this.firebase.createId(),
     };
@@ -86,24 +90,59 @@ export class PublicacionesService {
     }
 
   }
-/*
-  seleccionarPublicacion( $idPublicacion: string){
-    this.publicaciones.forEach(element => {
-      if((element.$idPublicacion) === ( $idPublicacion)){
-        element = this.publicacionSelecionada;
-        console.log( this.publicacionSelecionada) ;
-      }
-    });
+
+//region-especie
+  filterByRegionEspecie(especie:string,region:string){
+    return this.firebase.collection<Publicacion>('items', ref => ref.where('especie', '==', especie).where('region', '==', region))
+    .valueChanges()
   }
-*/
+
+  //region
+  filterByregion(region: string) {
+    return this.firebase.collection<Publicacion>('items', ref => ref.where('region', '==', region))
+    .valueChanges()
+  };
+  //especie
+  filterByespecie(especie: string) {
+    return this.firebase.collection<Publicacion>('items', ref => ref.where('especie', '==', especie))
+    .valueChanges()
+  };
+  //comunas
+  filterByComunas(comunas: string[]) {
+    return this.firebase.collection<Publicacion>('items', ref => ref.where('ciudad', 'in', comunas))
+    .valueChanges()
+  };
+  //comuna-region-especie
+  filterByAll(region: string,comunas: string[],especie:string){
+    return this.firebase.collection<Publicacion>('items', ref => ref.where('especie', '==', especie).where('ciudad', 'in', comunas).where('region', '==', region))
+    .valueChanges()
+  }
+  //region-comuna
+  filterByRegionComuna(region: string,comunas: string[]){
+    return this.firebase.collection<Publicacion>('items', ref => ref.where('region', '==', region).where('ciudad', 'in', comunas))
+    .valueChanges()
+  }
+
+  filterById(){
+    return this.firebase.collection<Publicacion>('items', ref => ref.where('$iduser', '==', this.authService.uid))
+    .valueChanges()
+  }
+
 
 getPublicacion(id: string): Observable<Publicacion> {
+  this.getid(id);
+  console.log(this.pubDoc,"pub");
   return this.firebase.collection<Publicacion>('items', ref => ref.where('$idPublicacion', '==', id).limit(1))
    .valueChanges()
    .pipe(
        flatMap(users=> users)
    );
+
 }
+
+
+
+
 
 
   crearPublicacion(publicacion:Publicacion,pubId: string): Promise <void>{
@@ -126,15 +165,22 @@ getPublicacion(id: string): Observable<Publicacion> {
     );
   }
 
-  borrarPublicacion(pubId: string): Promise<void> {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const result = await this.publicacionCol.doc(pubId).delete();
-        resolve(result);
-      } catch (err) {
-        reject(err.message);
-      }
-    });
+  getid(id: string){
+    this.publicacionCol.snapshotChanges().pipe(
+      map(actions =>actions.map(a=>console.log(a.payload.doc.id,"idd"),
+       
+        )
+       )
+    )
+  }
+
+  borrarPublicacion(pubId: string){
+    const id = this.pubDoc;
+   this.firebase.collection('items').doc(id).delete().then(() => {
+    console.log("Document successfully deleted!");
+}).catch((error) => {
+    console.error("Error removing document: ", error);
+});
   } 
 }
 

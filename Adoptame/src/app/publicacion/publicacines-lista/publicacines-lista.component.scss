@@ -7,11 +7,67 @@
   margin-left: auto;
 }
 
-@media (min-width: 900px){
+@media screen and  (min-width: 900px){
+  .filtros{
+    grid-template-areas:"regiones" 
+                        "comunas"
+                        "especies"
+                        "aplicar"
+                        "limpiar"
+    ;
+  }
   .product-grid{
       grid-template-columns: repeat(3, 1fr);
   }
   .crop-image {
     height: 700px;
   }
+ 
+}
+@media  (min-width: 900px){
+  .filtros{
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:"regiones" 
+                          "comunas"
+                          "especies"
+                          "aplicar"
+                          "limpiar"
+    ;
+  }
+}
+
+
+.filtros{
+  width: 100%;
+  display: grid;
+  background-color: skyblue;
+  margin-bottom: 5px;
+  grid-gap: 20px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(1, auto);
+  grid-template-areas:"regiones comunas  especies aplicar limpiar" ;
+}
+.region{
+  grid-area: regiones;
+  margin:auto;
+}
+.comuna{
+  grid-area: comunas;
+  margin:auto;
+}
+.especie{
+  grid-area: especies;
+  margin:auto;
+}
+.aplicar{
+  grid-area: aplicar;
+  margin:auto;
+}
+.limpiar{
+  grid-area: limpiar;
+  margin:auto;
+}
+button mat-raised-button{
+  vertical-align:middle;
 }

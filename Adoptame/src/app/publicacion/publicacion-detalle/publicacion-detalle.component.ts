@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Publicacion } from 'src/app/shared/models/publicacion.model';
+import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { PublicacionesService } from 'src/app/shared/services/publicaciones.service';
 
 @Component({
@@ -12,9 +13,14 @@ import { PublicacionesService } from 'src/app/shared/services/publicaciones.serv
 export class PublicacionDetalleComponent implements OnInit {
 
   //publicacion!: Observable<Publicacion>;
+  idUpub=''
+  esUsuario=false;
+  idPub=""
   publicacion:Publicacion | undefined;
   constructor(private route: ActivatedRoute,
-               private publicacionesServices: PublicacionesService
+               private publicacionesServices: PublicacionesService,
+               private authService:AuthenticationService,
+               private router: Router
   ) { 
     //this.publicacion= new Observable<Publicacion>;
     
@@ -24,6 +30,7 @@ export class PublicacionDetalleComponent implements OnInit {
 
     this.route.params.subscribe((params:Params)=>{    
       const id = params.id;
+      this.idPub=id;
       console.log(id,"veeeeeeer")
       this.verPublicacion(id);
     });
@@ -35,12 +42,14 @@ export class PublicacionDetalleComponent implements OnInit {
     .subscribe(pub => {
       console.log(pub, "publicacion")
       this.publicacion=pub;
-
+      this.idUpub=pub.idUsuario
+      if(pub.idUsuario==this.authService.uid){
+        this.esUsuario=true;
+      }
     })
-    
-  
-   
   }
-  
-
+  adoptado(){
+    this.publicacionesServices.borrarPublicacion(this.idPub);
+    this.router.navigate(['/publicacion']);
+  }
 }

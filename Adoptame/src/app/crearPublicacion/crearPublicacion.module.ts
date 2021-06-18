@@ -17,7 +17,7 @@ import { SubirImagenComponent } from './subir-imagen/subir-imagen.component'
     MaterialModule,
     SharedModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class CrearPublicacionModule {

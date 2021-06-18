@@ -1,14 +1,16 @@
 <mat-card>
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{ publicacion.nombreAnimal}} </mat-card-title>
+        <mat-card-title>{{ publicacion.nombreAnimal|titlecase}} </mat-card-title>
         <mat-card-subtitle>Personalidad: <b>{{publicacion.personalidad}}</b></mat-card-subtitle>
       </mat-card-header>
     <div class="crop-image"> 
         <img [src]="publicacion.imagen" alt="">
     </div>
     <mat-card-content> 
-        <p><mat-icon>maps_home_work</mat-icon>  Comuna: <b>{{ publicacion.region | slice:0:15}}</b></p>
+        <p><mat-icon>pets</mat-icon>  Especie: <b>{{ publicacion.especie}}</b></p>
+        <p><mat-icon>place</mat-icon>  Region: <b>{{ publicacion.region | slice:0:15}}</b></p>
+        <p><mat-icon>maps_home_work</mat-icon>  Comuna: <b>{{ publicacion.ciudad | slice:0:15}}</b></p>
         <p><mat-icon>date_range</mat-icon>  Edad: <b>{{ publicacion.edad}} </b> años</p>
         <p><mat-icon>square_foot</mat-icon>  Tamaño: <b>{{ publicacion.tamano}}</b></p>
         <p><mat-icon>smartphone</mat-icon>  Teléfono de contacto: <b>{{ publicacion.celular}}</b></p>

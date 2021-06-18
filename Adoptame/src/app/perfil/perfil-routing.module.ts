@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+import { MaterialModule } from '../material/material.module';
 import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
@@ -14,7 +16,7 @@ const routes: Routes = [
         RouterModule.forChild(routes),
     ],
     exports: [
-        RouterModule
+        RouterModule,
     ]
 })
 export class PerfilRoutingModule {

@@ -104,8 +104,8 @@
         <mat-form-field appearance="outline">
           <mat-label>Seleccione su region</mat-label>
           <mat-select formControlName="region">
-            <mat-option  *ngFor="let food of ciudades; let index" [value]="food.region">
-              {{food.region}}
+            <mat-option (click) = "obtenerCiudades(food.region)"  *ngFor="let food of ciudades; let index" [value]="food.region">
+              {{food.region}} 
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -115,8 +115,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Seleccione su comuna</mat-label>
             <mat-select formControlName="ciudad">
-              <mat-option  *ngFor="let ciudad of ciudades; let index" [value]="ciudad.comunas">
-              </mat-option>
+              <mat-option *ngFor="let state of comunas" [value]="state">{{state}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
